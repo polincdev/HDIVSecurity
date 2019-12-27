@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head />
+<h:body>
+    <h:form enctype="multipart/form-data">
+    	<h:inputText value="#{uploadBean.text}" />
+        <h:inputFile value="#{uploadBean.file}" />
+        <h:commandButton value="Post Upload" action="#{uploadBean.upload()}" />
+    </h:form>
+    <h:form enctype="multipart/form-data">
+        <h:inputFile value="#{uploadBean.file}" />
+        <h:commandButton value="Ajax Upload">
+            <f:ajax listener="#{uploadBean.upload()}" execute="@form"
+                render="countOutput" />
+        </h:commandButton>
+    </h:form>
+     
+    <h:outputText id="countOutput"
+        value="Files uploaded #{uploadBean.filesUploaded}" />
+</h:body>
+</html>
